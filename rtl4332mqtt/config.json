@@ -7,7 +7,7 @@
   "startup": "services",
   "map": ["config:rw", "ssl"],
   "usb": true,
-  "init": false,
+  "init": "false",
   "host_network": "False",
   "arch": [
     "aarch64",
