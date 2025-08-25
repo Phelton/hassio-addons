@@ -175,14 +175,19 @@ echo "MQTT Host =" $MQTT_HOST
 echo "MQTT User =" $MQTT_USER
 echo "MQTT Password =" $MQTT_PASS
 echo "MQTT Topic =" $MQTT_TOPIC
-echo "RTL_433 Protocol =" $PROTOCOL
+echo "RTL_433 Protocols =" $PROTOCOL
 echo "RTL_433 Frequency =" $FREQUENCY
 echo "RTL_433 Gain =" $GAIN
 echo "RTL_433 Frequency Offset =" $OFFSET
 
 #set -x  ## uncomment for MQTT logging...
+PROTOCOL_ARGS=""
+for p in $PROTOCOL; do
+    PROTOCOL_ARGS="$PROTOCOL_ARGS -R $p"
+done
 
-/usr/local/bin/rtl_433 -F json -R $PROTOCOL -f $FREQUENCY -g $GAIN -p $OFFSET | while read line
+/usr/local/bin/rtl_433 -F json $PROTOCOL_ARGS -f $FREQUENCY -g $GAIN -p $OFFSET | while read line
+#/usr/local/bin/rtl_433 -F json -R $PROTOCOL -f $FREQUENCY -g $GAIN -p $OFFSET | while read line
 do
   DEVICE="$(echo $line | jq --raw-output '.model' | tr -s ' ' '_')" # replace ' ' with '_'
   DEVICEID="$(echo $line | jq --raw-output '.id' | tr -s ' ' '_')"
