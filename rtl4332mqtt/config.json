@@ -34,7 +34,7 @@
     "mqtt_password": "str",
     "mqtt_topic": "str",
     "protocol": "yaml",
-    "frequency": "int",
+    "frequency": ["int"],
     "gain": "int",
     "frequency_offset": "int"
    }
