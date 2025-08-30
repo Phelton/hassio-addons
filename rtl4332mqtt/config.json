@@ -33,11 +33,7 @@
     "mqtt_user": "str",
     "mqtt_password": "str",
     "mqtt_topic": "str",
-    "protocol": {
-      "type": "list",
-      "required": false,
-      "items": "int"
-    },
+    "protocol": "yaml",
     "frequency": "int",
     "gain": "int",
     "frequency_offset": "int"
